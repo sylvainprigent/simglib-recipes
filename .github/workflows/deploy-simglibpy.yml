@@ -1,9 +1,9 @@
-name: Deploy to anaconda
+name: Deploy simglibpy to anaconda
 on: [push]
 
 jobs:
   miniconda:
-    name: Miniconda ${{ matrix.os }}
+    name: simglibpy ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
@@ -22,6 +22,8 @@ jobs:
             conda config --set anaconda_upload no
             conda config --add channels conda-forge
             conda config --show channels
+            conda install --yes cython
+            conda install --yes numpy
             conda install --yes conda-build
             conda install anaconda-client --yes
       - name: conda build linux 
@@ -29,15 +31,15 @@ jobs:
         shell: bash -l {0}   
         run: |
             conda-build recipes/simglibpy   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/linux-64/simglib-*.tar.bz2 --force
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/linux-64/simglibpy-*.tar.bz2 --force
       - name: conda build macos 
         if: runner.os == 'macOS'
         shell: bash -l {0}   
         run: |
             conda-build recipes/simglibpy   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/osx-64/simglib-*.tar.bz2 --force
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/osx-64/simglibpy-*.tar.bz2 --force
       - name: conda build windows 
         if: runner.os == 'Windows'
         run: |
             conda-build recipes/simglibpy   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/win-64/simglib-*.tar.bz2 --force
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/win-64/simglibpy-*.tar.bz2 --force
