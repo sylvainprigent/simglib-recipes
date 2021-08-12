@@ -19,12 +19,16 @@ jobs:
       - name: Lint
         shell: bash -l {0}
         run: |
+            conda config --set anaconda_upload yes
             conda config --add channels conda-forge
             conda config --show channels
             conda install --yes cmake
             conda install --yes make
             conda install  --yes conda-build
-      - name: conda build  
-        shell: bash -l {0}   
-        run: |
-            conda-build recipes/simglib
+            conda install anaconda-client --yes
+      - name: publish-to-conda
+        uses: meffmadd/conda-publish-action@v1.4
+        with:
+          subdir: 'recipes/simglib'
+          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
+          platforms: 'win osx linux'
