@@ -1,10 +1,10 @@
 package:
     name: simglib
-    version: "0.0.1"
+    version: "0.1.0"
   
 source:
   git_url: https://github.com/sylvainprigent/simglib.git
-  git_rev: v0.0.1
+  git_rev: v0.1.0
   
 build:
   number: 1
@@ -26,10 +26,10 @@ requirements:
   
 test:
   commands:
-    - "! test -d $PREFIX/bin/spitfiredeconv2d"                # [unix]
-    - "! test -d $PREFIX/bin/spitfiredeconv3d"                # [unix]
-    - if not exist %PREFIX%\\bin\\spitfiredeconv2d.exe exit 1     # [win]
-    - if not exist %PREFIX%\\bin\\spitfiredeconv3d.exe exit 1     # [win]
+    - "! test -d $PREFIX/bin/simgspitfiredeconv2d"                # [unix]
+    - "! test -d $PREFIX/bin/simgspitfiredeconv3d"                # [unix]
+    - if not exist %PREFIX%\\bin\\simgspitfiredeconv2d.exe exit 1     # [win]
+    - if not exist %PREFIX%\\bin\\simgspitfiredeconv3d.exe exit 1     # [win]
   
 about:
   home: 'https://github.com/sylvainprigent/simglib'
