@@ -37,7 +37,7 @@ jobs:
         shell: bash -l {0}   
         run: |
             conda-build recipes/simglib   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/osx-64/simglib-*.tar.bz2 --force
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/local/miniconda/conda-bld/osx-64/simglib-*.tar.bz2 --force
       - name: conda build windows 
         if: runner.os == 'Windows'
         run: |
