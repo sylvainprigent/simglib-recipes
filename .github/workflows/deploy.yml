@@ -26,9 +26,12 @@ jobs:
             conda install --yes make
             conda install  --yes conda-build
             conda install anaconda-client --yes
-      - name: publish-to-conda
-        uses: meffmadd/conda-publish-action@v1.4
-        with:
-          subdir: 'recipes/simglib'
-          anacondatoken: ${{ secrets.ANACONDA_TOKEN }}
-          platforms: 'win osx linux'
+      - name: conda build  
+        shell: bash -l {0}   
+        run: |
+            conda-build recipes/simglib
+      - name: anaconda anaconda_upload
+        shell: bash -l {0}
+        run: |
+             export ANACONDA_API_TOKEN=${{ secrets.ANACONDA_TOKEN }}
+             anaconda upload --force linux-64/*.tar.bz2     
