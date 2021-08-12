@@ -31,4 +31,4 @@ jobs:
         shell: bash -l {0}   
         run: |
             conda-build recipes/simglib   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  ~/conda-bld/linux-64/simglib-*.tar.bz2 --force
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/linux-64/simglib-*.tar.bz2 --force
