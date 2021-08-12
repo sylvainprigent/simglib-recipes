@@ -21,6 +21,10 @@ jobs:
         run: |
             conda install cmake
             conda install make
+            conda install libtiff
+            conda install fftw
+            conda install git
+            conda install llvm-openmp
             conda install conda-build
       - name: conda build  
         shell: bash -l {0}   
