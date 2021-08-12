@@ -19,12 +19,10 @@ jobs:
       - name: Lint
         shell: bash -l {0}
         run: |
+            conda config --add channels conda-forge
+            conda config --show channels
             conda install --yes cmake
             conda install --yes make
-            conda install --yes libtiff
-            conda install --yes fftw
-            conda install --yes git
-            conda install -c conda-forge --yes llvm-openmp
             conda install  --yes conda-build
       - name: conda build  
         shell: bash -l {0}   
