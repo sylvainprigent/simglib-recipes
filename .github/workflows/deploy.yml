@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
-            os: ["ubuntu-latest"]
+            os: ["ubuntu-latest", "macos-latest"]
     steps:
       - uses: actions/checkout@v2
       - name: conda-action
@@ -19,7 +19,6 @@ jobs:
       - name: Lint
         shell: bash -l {0}
         run: |
-            export ANACONDA_API_TOKEN=${{ secrets.ANACONDA_TOKEN }}
             conda config --set anaconda_upload no
             conda config --add channels conda-forge
             conda config --show channels
@@ -27,8 +26,20 @@ jobs:
             conda install --yes make
             conda install  --yes conda-build
             conda install anaconda-client --yes
-      - name: conda build  
+      - name: conda build linux 
+        if: runner.os == 'Linux'
         shell: bash -l {0}   
         run: |
             conda-build recipes/simglib   
             anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/linux-64/simglib-*.tar.bz2 --force
+      - name: conda build macos 
+        if: runner.os == 'macOS'
+        shell: bash -l {0}   
+        run: |
+            conda-build recipes/simglib   
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/osx-64/simglib-*.tar.bz2 --force
+      - name: conda build windows 
+        if: runner.os == 'Windows'
+        run: |
+            conda-build recipes/simglib   
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/win-64/simglib-*.tar.bz2 --force
