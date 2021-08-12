@@ -19,13 +19,13 @@ jobs:
       - name: Lint
         shell: bash -l {0}
         run: |
-            conda install cmake
-            conda install make
-            conda install libtiff
-            conda install fftw
-            conda install git
-            conda install llvm-openmp
-            conda install conda-build
+            conda install --yes cmake
+            conda install --yes make
+            conda install --yes libtiff
+            conda install --yes fftw
+            conda install --yes git
+            conda install -c conda-forge --yes llvm-openmp
+            conda install  --yes conda-build
       - name: conda build  
         shell: bash -l {0}   
         run: |
