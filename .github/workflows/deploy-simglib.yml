@@ -1,4 +1,4 @@
-name: Deploy to anaconda
+name: Deploy simglib to anaconda
 on: [push]
 
 jobs:

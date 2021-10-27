@@ -21,6 +21,7 @@ jobs:
         run: |
             conda config --set anaconda_upload no
             conda config --add channels conda-forge
+            conda config --add channels sylvainprigent
             conda config --show channels
             conda install --yes cython
             conda install --yes numpy
