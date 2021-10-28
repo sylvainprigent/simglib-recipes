@@ -41,5 +41,5 @@ jobs:
       - name: conda build windows 
         if: runner.os == 'Windows'
         run: |
-            conda-build recipes/simglib   
-            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  /usr/share/miniconda/conda-bld/win-64/simglib-*.tar.bz2 --force
+            conda-build recipes\simglib   
+            anaconda -t ${{ secrets.ANACONDA_TOKEN }} upload -u sylvainprigent  C:\Miniconda\conda-bld\win-64\simglib-*.tar.bz2 --force
