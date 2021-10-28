@@ -16,7 +16,7 @@ requirements:
     - libtiff
     - fftw
     - git
-    - llvm-openmp
+    - llvm-openmp # [unix]
   host:
     - libtiff
     - fftw
